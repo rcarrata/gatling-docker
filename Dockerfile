@@ -14,6 +14,7 @@ RUN mkdir -p /tmp/downloads && \
   mkdir -p /tmp/archive && cd /tmp/archive && \
   unzip /tmp/downloads/gatling-$GATLING_VERSION.zip && \
   mv /tmp/archive/gatling-charts-highcharts-bundle-$GATLING_VERSION/* /opt/gatling/ && \
+  mkdir /opt/gatling/target && \
   chown -R gatling:gatling /opt/gatling && \
   chmod ugo+x /opt/gatling/bin/*.sh
 
