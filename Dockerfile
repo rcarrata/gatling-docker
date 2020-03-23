@@ -6,7 +6,7 @@ ENV PATH /opt/gatling/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbi
 
 WORKDIR  /opt/gatling
 
-RUN useradd gatling
+RUN groupadd -r gatling && useradd -r -g gatling gatling
 
 RUN mkdir -p /tmp/downloads && \
   curl -sf -o /tmp/downloads/gatling-$GATLING_VERSION.zip \
@@ -14,7 +14,6 @@ RUN mkdir -p /tmp/downloads && \
   mkdir -p /tmp/archive && cd /tmp/archive && \
   unzip /tmp/downloads/gatling-$GATLING_VERSION.zip && \
   mv /tmp/archive/gatling-charts-highcharts-bundle-$GATLING_VERSION/* /opt/gatling/ && \
-  mkdir /opt/gatling/target && \
   chown -R gatling:gatling /opt/gatling && \
   chmod ugo+x /opt/gatling/bin/*.sh
 
